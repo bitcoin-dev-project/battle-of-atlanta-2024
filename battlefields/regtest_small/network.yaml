@@ -1,0 +1,96 @@
+caddy:
+  enabled: true
+fork_observer:
+  configQueryInterval: 20
+  enabled: true
+nodes:
+- addnode:
+  - tank-0001-aqua
+  - tank-0001-aqua
+  - miner
+  - tank-0001-aqua
+  - tank-0000-aqua
+  collectLogs: true
+  config: "maxconnections=1000\nuacomment=tank-0000-aqua\nrpcauth=forkobserver:1418183465eecbd407010cf60811c6a0$d4e5f0647a63429c218da1302d7f19fe627302aeb0a71a74de55346a25d8057c\n\
+    \ rpcwhitelist=forkobserver:getchaintips,getblockheader,getblockhash,getblock,getnetworkinfo\n\
+    \ rpcwhitelistdefault=0\n "
+  global:
+    chain: regtest
+    rpcpassword: 0020368c50e964898b52d810043c48ab
+  image:
+    tag: 94.0.0-5k-inv
+  metrics: blocks=getblockcount() mempool_size=getmempoolinfo()["size"] memused=getmemoryinfo()["locked"]["used"]
+    memfree=getmemoryinfo()["locked"]["free"]
+  metricsExport: true
+  name: tank-0000-aqua
+  resources:
+    limits:
+      cpu: 4000m
+      memory: 1000Mi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+- addnode:
+  - miner
+  - tank-0000-aqua
+  - tank-0000-aqua
+  - tank-0001-aqua
+  - tank-0000-aqua
+  collectLogs: true
+  config: "maxconnections=1000\nuacomment=tank-0001-aqua\nrpcauth=forkobserver:1418183465eecbd407010cf60811c6a0$d4e5f0647a63429c218da1302d7f19fe627302aeb0a71a74de55346a25d8057c\n\
+    \ rpcwhitelist=forkobserver:getchaintips,getblockheader,getblockhash,getblock,getnetworkinfo\n\
+    \ rpcwhitelistdefault=0\n "
+  global:
+    chain: regtest
+    rpcpassword: 1a7b82118b0b2722e18eb7b24387a428
+  image:
+    tag: 98.0.0-invalid-blocks
+  metrics: blocks=getblockcount() mempool_size=getmempoolinfo()["size"] memused=getmemoryinfo()["locked"]["used"]
+    memfree=getmemoryinfo()["locked"]["free"]
+  metricsExport: true
+  name: tank-0001-aqua
+  resources:
+    limits:
+      cpu: 4000m
+      memory: 1000Mi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+- addnode:
+  - tank-0000-aqua
+  - tank-0000-aqua
+  - miner
+  - tank-0001-aqua
+  - miner
+  config: "maxconnections=1000\nuacomment=miner\nrpcauth=forkobserver:1418183465eecbd407010cf60811c6a0$d4e5f0647a63429c218da1302d7f19fe627302aeb0a71a74de55346a25d8057c\n\
+    \ rpcwhitelist=forkobserver:getchaintips,getblockheader,getblockhash,getblock,getnetworkinfo\n\
+    \ rpcwhitelistdefault=0\n coinstatsindex=1\n "
+  global:
+    chain: regtest
+    rpcpassword: eddfb76f5f56dd2f4f08ba11f618d9c6
+  image:
+    tag: 29.0-util
+  metrics: txrate=getchaintxstats(10)["txrate"] utxosetsize=gettxoutsetinfo()["txouts"]
+  metricsExport: true
+  name: miner
+  startupProbe:
+    exec:
+      command:
+      - /bin/sh
+      - -c
+      - bitcoin-cli createwallet miner && bitcoin-cli importdescriptors [{\"desc\":\"combo\(cQh1FgfgqnN6C6crZ4n21ACL78Ejq1qFB7b1UB8hgXyfA47abE6A\)#g8fjg7tk\"\,\"timestamp\":0}]
+    failureThreshold: 10
+    periodSeconds: 30
+    successThreshold: 1
+    timeoutSeconds: 60
+plugins:
+  postDeploy:
+    leaderboard:
+      admin_key: 565703bafcc5d833b0c4cc5b7448e881
+      entrypoint: ../../plugins/leaderboard
+      next_public_asset_prefix: /leaderboard
+services:
+- host: leaderboard.default
+  path: /leaderboard/
+  port: 3000
+  title: Leaderboard

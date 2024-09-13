@@ -1,0 +1,12 @@
+nodes:
+- addnode:
+  - miner.default
+  config: "maxconnections=1000\nuacomment=armada-0\nrpcauth=forkobserver:1418183465eecbd407010cf60811c6a0$d4e5f0647a63429c218da1302d7f19fe627302aeb0a71a74de55346a25d8057c\n\
+    \ rpcwhitelist=forkobserver:getchaintips,getblockheader,getblockhash,getblock,getnetworkinfo\n\
+    \ rpcwhitelistdefault=0\n signetchallenge=00141c73cc6c1d3b02d7245e0a66903f4717ecddf567\n"
+  global:
+    chain: signet
+    rpcpassword: 3c28258d6ea6d3d05096697abb8c5d9d
+  image:
+    tag: '29.0'
+  name: armada-0

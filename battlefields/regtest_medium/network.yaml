@@ -1,0 +1,382 @@
+caddy:
+  enabled: true
+fork_observer:
+  configQueryInterval: 20
+  enabled: true
+nodes:
+- addnode:
+  - tank-0001-aqua
+  - tank-0010-aqua
+  - tank-0011-aqua
+  - tank-0002-aqua
+  - tank-0006-aqua
+  collectLogs: true
+  config: "maxconnections=1000\nuacomment=tank-0000-aqua\nrpcauth=forkobserver:1418183465eecbd407010cf60811c6a0$d4e5f0647a63429c218da1302d7f19fe627302aeb0a71a74de55346a25d8057c\n\
+    \ rpcwhitelist=forkobserver:getchaintips,getblockheader,getblockhash,getblock,getnetworkinfo\n\
+    \ rpcwhitelistdefault=0\n "
+  global:
+    chain: regtest
+    rpcpassword: cc1ae88c439a9602d3d3b0856a322fff
+  image:
+    tag: 94.0.0-5k-inv
+  metrics: blocks=getblockcount() mempool_size=getmempoolinfo()["size"] memused=getmemoryinfo()["locked"]["used"]
+    memfree=getmemoryinfo()["locked"]["free"]
+  metricsExport: true
+  name: tank-0000-aqua
+  resources:
+    limits:
+      cpu: 4000m
+      memory: 1000Mi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+- addnode:
+  - tank-0002-aqua
+  - tank-0006-aqua
+  - tank-0005-aqua
+  - tank-0000-aqua
+  - tank-0001-aqua
+  collectLogs: true
+  config: "maxconnections=1000\nuacomment=tank-0001-aqua\nrpcauth=forkobserver:1418183465eecbd407010cf60811c6a0$d4e5f0647a63429c218da1302d7f19fe627302aeb0a71a74de55346a25d8057c\n\
+    \ rpcwhitelist=forkobserver:getchaintips,getblockheader,getblockhash,getblock,getnetworkinfo\n\
+    \ rpcwhitelistdefault=0\n "
+  global:
+    chain: regtest
+    rpcpassword: da527b44eefb0a1b0c2a3fa2b688aa2f
+  image:
+    tag: 98.0.0-invalid-blocks
+  metrics: blocks=getblockcount() mempool_size=getmempoolinfo()["size"] memused=getmemoryinfo()["locked"]["used"]
+    memfree=getmemoryinfo()["locked"]["free"]
+  metricsExport: true
+  name: tank-0001-aqua
+  resources:
+    limits:
+      cpu: 4000m
+      memory: 1000Mi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+- addnode:
+  - tank-0003-aqua
+  - tank-0010-aqua
+  - tank-0012-aqua
+  - tank-0004-aqua
+  - tank-0010-aqua
+  collectLogs: true
+  config: "maxconnections=1000\nuacomment=tank-0002-aqua\nrpcauth=forkobserver:1418183465eecbd407010cf60811c6a0$d4e5f0647a63429c218da1302d7f19fe627302aeb0a71a74de55346a25d8057c\n\
+    \ rpcwhitelist=forkobserver:getchaintips,getblockheader,getblockhash,getblock,getnetworkinfo\n\
+    \ rpcwhitelistdefault=0\n "
+  global:
+    chain: regtest
+    rpcpassword: 655da00b8b99e12663a00be9e0f5d8b2
+  image:
+    tag: 99.0.0-unknown-message
+  metrics: blocks=getblockcount() mempool_size=getmempoolinfo()["size"] memused=getmemoryinfo()["locked"]["used"]
+    memfree=getmemoryinfo()["locked"]["free"]
+  metricsExport: true
+  name: tank-0002-aqua
+  resources:
+    limits:
+      cpu: 4000m
+      memory: 1000Mi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+- addnode:
+  - tank-0004-aqua
+  - tank-0006-aqua
+  - miner
+  - tank-0012-aqua
+  - tank-0012-aqua
+  collectLogs: true
+  config: "maxconnections=1000\nuacomment=tank-0003-aqua\nrpcauth=forkobserver:1418183465eecbd407010cf60811c6a0$d4e5f0647a63429c218da1302d7f19fe627302aeb0a71a74de55346a25d8057c\n\
+    \ rpcwhitelist=forkobserver:getchaintips,getblockheader,getblockhash,getblock,getnetworkinfo\n\
+    \ rpcwhitelistdefault=0\n "
+  global:
+    chain: regtest
+    rpcpassword: dffc07a94891eb2e2e6bd02bb28c091a
+  image:
+    tag: 97.0.0-50-orphans
+  metrics: blocks=getblockcount() mempool_size=getmempoolinfo()["size"] memused=getmemoryinfo()["locked"]["used"]
+    memfree=getmemoryinfo()["locked"]["free"]
+  metricsExport: true
+  name: tank-0003-aqua
+  resources:
+    limits:
+      cpu: 4000m
+      memory: 1000Mi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+- addnode:
+  - tank-0005-aqua
+  - tank-0008-aqua
+  - tank-0010-aqua
+  - tank-0010-aqua
+  - tank-0003-aqua
+  collectLogs: true
+  config: "maxconnections=1000\nuacomment=tank-0004-aqua\nrpcauth=forkobserver:1418183465eecbd407010cf60811c6a0$d4e5f0647a63429c218da1302d7f19fe627302aeb0a71a74de55346a25d8057c\n\
+    \ rpcwhitelist=forkobserver:getchaintips,getblockheader,getblockhash,getblock,getnetworkinfo\n\
+    \ rpcwhitelistdefault=0\n "
+  global:
+    chain: regtest
+    rpcpassword: 6f440fca8fc0d103017553ca2b2f069a
+  image:
+    tag: 96.0.0-no-mp-trim
+  metrics: blocks=getblockcount() mempool_size=getmempoolinfo()["size"] memused=getmemoryinfo()["locked"]["used"]
+    memfree=getmemoryinfo()["locked"]["free"]
+  metricsExport: true
+  name: tank-0004-aqua
+  resources:
+    limits:
+      cpu: 4000m
+      memory: 1000Mi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+- addnode:
+  - tank-0006-aqua
+  - tank-0003-aqua
+  - tank-0005-aqua
+  - tank-0011-aqua
+  - tank-0006-aqua
+  collectLogs: true
+  config: "maxconnections=1000\nuacomment=tank-0005-aqua\nrpcauth=forkobserver:1418183465eecbd407010cf60811c6a0$d4e5f0647a63429c218da1302d7f19fe627302aeb0a71a74de55346a25d8057c\n\
+    \ rpcwhitelist=forkobserver:getchaintips,getblockheader,getblockhash,getblock,getnetworkinfo\n\
+    \ rpcwhitelistdefault=0\n "
+  global:
+    chain: regtest
+    rpcpassword: b5584df9cf3a695fc9f32105b858c51a
+  image:
+    tag: 95.0.0-disabled-opcodes
+  metrics: blocks=getblockcount() mempool_size=getmempoolinfo()["size"] memused=getmemoryinfo()["locked"]["used"]
+    memfree=getmemoryinfo()["locked"]["free"]
+  metricsExport: true
+  name: tank-0005-aqua
+  resources:
+    limits:
+      cpu: 4000m
+      memory: 1000Mi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+- addnode:
+  - tank-0007-aqua
+  - tank-0005-aqua
+  - tank-0005-aqua
+  - tank-0002-aqua
+  - tank-0006-aqua
+  collectLogs: true
+  config: "maxconnections=1000\nuacomment=tank-0006-aqua\nrpcauth=forkobserver:1418183465eecbd407010cf60811c6a0$d4e5f0647a63429c218da1302d7f19fe627302aeb0a71a74de55346a25d8057c\n\
+    \ rpcwhitelist=forkobserver:getchaintips,getblockheader,getblockhash,getblock,getnetworkinfo\n\
+    \ rpcwhitelistdefault=0\n "
+  global:
+    chain: regtest
+    rpcpassword: c033e539ebfb6e635ce213a67c403d2e
+  image:
+    tag: 24.2.0
+  metrics: blocks=getblockcount() mempool_size=getmempoolinfo()["size"] memused=getmemoryinfo()["locked"]["used"]
+    memfree=getmemoryinfo()["locked"]["free"]
+  metricsExport: true
+  name: tank-0006-aqua
+  resources:
+    limits:
+      cpu: 4000m
+      memory: 1000Mi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+- addnode:
+  - tank-0008-aqua
+  - tank-0004-aqua
+  - tank-0011-aqua
+  - tank-0012-aqua
+  - tank-0012-aqua
+  collectLogs: true
+  config: "maxconnections=1000\nuacomment=tank-0007-aqua\nrpcauth=forkobserver:1418183465eecbd407010cf60811c6a0$d4e5f0647a63429c218da1302d7f19fe627302aeb0a71a74de55346a25d8057c\n\
+    \ rpcwhitelist=forkobserver:getchaintips,getblockheader,getblockhash,getblock,getnetworkinfo\n\
+    \ rpcwhitelistdefault=0\n "
+  global:
+    chain: regtest
+    rpcpassword: 482198b77ee7d6eb933146a473954150
+  image:
+    tag: 23.2.0-with-PR-26898
+  metrics: blocks=getblockcount() mempool_size=getmempoolinfo()["size"] memused=getmemoryinfo()["locked"]["used"]
+    memfree=getmemoryinfo()["locked"]["free"]
+  metricsExport: true
+  name: tank-0007-aqua
+  resources:
+    limits:
+      cpu: 4000m
+      memory: 1000Mi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+- addnode:
+  - tank-0009-aqua
+  - tank-0000-aqua
+  - tank-0000-aqua
+  - tank-0011-aqua
+  - tank-0011-aqua
+  collectLogs: true
+  config: "maxconnections=1000\nuacomment=tank-0008-aqua\nrpcauth=forkobserver:1418183465eecbd407010cf60811c6a0$d4e5f0647a63429c218da1302d7f19fe627302aeb0a71a74de55346a25d8057c\n\
+    \ rpcwhitelist=forkobserver:getchaintips,getblockheader,getblockhash,getblock,getnetworkinfo\n\
+    \ rpcwhitelistdefault=0\n "
+  global:
+    chain: regtest
+    rpcpassword: f00d83339ed1579edc232652a6836f1a
+  image:
+    tag: 0.21.1
+  metrics: blocks=getblockcount() mempool_size=getmempoolinfo()["size"] memused=getmemoryinfo()["locked"]["used"]
+    memfree=getmemoryinfo()["locked"]["free"]
+  metricsExport: true
+  name: tank-0008-aqua
+  resources:
+    limits:
+      cpu: 4000m
+      memory: 1000Mi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+- addnode:
+  - tank-0010-aqua
+  - tank-0012-aqua
+  - tank-0010-aqua
+  - tank-0011-aqua
+  - tank-0008-aqua
+  collectLogs: true
+  config: "maxconnections=1000\nuacomment=tank-0009-aqua\nrpcauth=forkobserver:1418183465eecbd407010cf60811c6a0$d4e5f0647a63429c218da1302d7f19fe627302aeb0a71a74de55346a25d8057c\n\
+    \ rpcwhitelist=forkobserver:getchaintips,getblockheader,getblockhash,getblock,getnetworkinfo\n\
+    \ rpcwhitelistdefault=0\n "
+  global:
+    chain: regtest
+    rpcpassword: 3af51f231acb5af899ca59fd1b9324b5
+  image:
+    tag: 0.20.0
+  metrics: blocks=getblockcount() mempool_size=getmempoolinfo()["size"] memused=getmemoryinfo()["locked"]["used"]
+    memfree=getmemoryinfo()["locked"]["free"]
+  metricsExport: true
+  name: tank-0009-aqua
+  resources:
+    limits:
+      cpu: 4000m
+      memory: 1000Mi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+- addnode:
+  - tank-0011-aqua
+  - tank-0000-aqua
+  - tank-0002-aqua
+  - tank-0005-aqua
+  - tank-0010-aqua
+  collectLogs: true
+  config: "maxconnections=1000\nuacomment=tank-0010-aqua\nrpcauth=forkobserver:1418183465eecbd407010cf60811c6a0$d4e5f0647a63429c218da1302d7f19fe627302aeb0a71a74de55346a25d8057c\n\
+    \ rpcwhitelist=forkobserver:getchaintips,getblockheader,getblockhash,getblock,getnetworkinfo\n\
+    \ rpcwhitelistdefault=0\n "
+  global:
+    chain: regtest
+    rpcpassword: 940699236a2c5b123d2bb2e391e820c7
+  image:
+    tag: 0.19.2
+  metrics: blocks=getblockcount() mempool_size=getmempoolinfo()["size"] memused=getmemoryinfo()["locked"]["used"]
+    memfree=getmemoryinfo()["locked"]["free"]
+  metricsExport: true
+  name: tank-0010-aqua
+  resources:
+    limits:
+      cpu: 4000m
+      memory: 1000Mi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+- addnode:
+  - tank-0012-aqua
+  - tank-0007-aqua
+  - tank-0004-aqua
+  - tank-0010-aqua
+  - tank-0002-aqua
+  collectLogs: true
+  config: "maxconnections=1000\nuacomment=tank-0011-aqua\nrpcauth=forkobserver:1418183465eecbd407010cf60811c6a0$d4e5f0647a63429c218da1302d7f19fe627302aeb0a71a74de55346a25d8057c\n\
+    \ rpcwhitelist=forkobserver:getchaintips,getblockheader,getblockhash,getblock,getnetworkinfo\n\
+    \ rpcwhitelistdefault=0\n "
+  global:
+    chain: regtest
+    rpcpassword: 706a3f5f92b239e34a62444d90666962
+  image:
+    tag: 0.17.0
+  metrics: blocks=getblockcount() mempool_size=getmempoolinfo()["size"] memused=getmemoryinfo()["locked"]["used"]
+    memfree=getmemoryinfo()["locked"]["free"]
+  metricsExport: true
+  name: tank-0011-aqua
+  resources:
+    limits:
+      cpu: 4000m
+      memory: 1000Mi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+- addnode:
+  - miner
+  - tank-0002-aqua
+  - tank-0002-aqua
+  - tank-0007-aqua
+  - tank-0009-aqua
+  collectLogs: true
+  config: "maxconnections=1000\nuacomment=tank-0012-aqua\nrpcauth=forkobserver:1418183465eecbd407010cf60811c6a0$d4e5f0647a63429c218da1302d7f19fe627302aeb0a71a74de55346a25d8057c\n\
+    \ rpcwhitelist=forkobserver:getchaintips,getblockheader,getblockhash,getblock,getnetworkinfo\n\
+    \ rpcwhitelistdefault=0\n "
+  global:
+    chain: regtest
+    rpcpassword: e61b46e6550eb8e65772299c3156ec82
+  image:
+    tag: 0.16.1
+  metrics: blocks=getblockcount() mempool_size=getmempoolinfo()["size"] memused=getmemoryinfo()["locked"]["used"]
+    memfree=getmemoryinfo()["locked"]["free"]
+  metricsExport: true
+  name: tank-0012-aqua
+  resources:
+    limits:
+      cpu: 4000m
+      memory: 1000Mi
+    requests:
+      cpu: 100m
+      memory: 200Mi
+- addnode:
+  - tank-0000-aqua
+  - tank-0010-aqua
+  - tank-0012-aqua
+  - tank-0011-aqua
+  - tank-0002-aqua
+  config: "maxconnections=1000\nuacomment=miner\nrpcauth=forkobserver:1418183465eecbd407010cf60811c6a0$d4e5f0647a63429c218da1302d7f19fe627302aeb0a71a74de55346a25d8057c\n\
+    \ rpcwhitelist=forkobserver:getchaintips,getblockheader,getblockhash,getblock,getnetworkinfo\n\
+    \ rpcwhitelistdefault=0\n coinstatsindex=1\n "
+  global:
+    chain: regtest
+    rpcpassword: 41dd35ad0e9061ec27b8f4730b484f5b
+  image:
+    tag: 29.0-util
+  metrics: txrate=getchaintxstats(10)["txrate"] utxosetsize=gettxoutsetinfo()["txouts"]
+  metricsExport: true
+  name: miner
+  startupProbe:
+    exec:
+      command:
+      - /bin/sh
+      - -c
+      - bitcoin-cli createwallet miner && bitcoin-cli importdescriptors [{\"desc\":\"combo\(cRoDbvjzLXAxof2Gm4NWBxUUjAa7mcPaMN9W45FaGcV1x5eH1C31\)#2e9x2hgf\"\,\"timestamp\":0}]
+    failureThreshold: 10
+    periodSeconds: 30
+    successThreshold: 1
+    timeoutSeconds: 60
+plugins:
+  postDeploy:
+    leaderboard:
+      admin_key: 27c8370753bf1b5bbc5848915dd45094
+      entrypoint: ../../plugins/leaderboard
+      next_public_asset_prefix: /leaderboard
+services:
+- host: leaderboard.default
+  path: /leaderboard/
+  port: 3000
+  title: Leaderboard
