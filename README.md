@@ -25,17 +25,33 @@ https://bitcorncore.org/en/security-advisories/
         - One team armada node with two vulnerable nodes running on regtest
 - Scenario: A python script deployed by an attacker to a battlefield to attack tanks
 
-## Objectives
+## Objective
+
+Working as a team or solo, your objective is to take down tanks to score as many points as possible.
+
+## Team Play
+
+When playing as a team, you'll be assigned a team color. Your team's objective is to take down tanks
+**marked with your color**. These are your targets during the game.
+
+Example: The tank `tank-0001-red` is a red-team target.
+
+> [!WARNING]
+> If you take down a tank that is designated as another team's target (marked with their color),
+> the points for that tank will be awarded to that team.
+
+## How to Play
 
 1. Clone this repo
 2. Install and set up Warnet
 3. Create attacks
 4. Test attacks locally (optional)
-5. Attack Bitcoin Core nodes on the main battlefield
+5. Attack target tanks on the main battlefield
 
 ## What is Warnet?
 
-Warnet is a system written in Python to deploy, manage, and interact with
+[Warnet](https://github.com/bitcoin-dev-project/warnet) is a system written in Python to deploy,
+manage, and interact with
 Bitcoin p2p networks inside a Kubernetes cluster. The official battlefield
 will be a remote cluster with over 100 Bitcoin nodes (referred to as "Tanks")
 running on a custom signet chain (where only the network administrator can
